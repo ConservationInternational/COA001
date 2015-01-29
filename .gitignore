@@ -1,0 +1,4 @@
+.vagrant
+host_vars
+*.staging.radishlab.com
+.my.*

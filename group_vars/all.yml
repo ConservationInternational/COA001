@@ -1,0 +1,21 @@
+---
+
+ansible_ssh_user: "vagrant"
+
+project_name: "COA001"
+project_url: "coa001.staging.radishlab.com"
+admin_user: "www-data"
+admin_home_directory: "/var/www"
+current_date: "{{ ansible_date_time.year }}{{ ansible_date_time.month }}{{ ansible_date_time.day }}"
+ssh_port: "22"
+timezone: "America/New_York"
+
+# PostgresSQL
+postgres_default_hosts:
+  - "127.0.0.1"
+  - "::1"
+  - "localhost"
+postgres_port: "5432"
+postgres_app_database: "{{ project_name }}"
+postgres_app_user: "username"
+postgres_app_password: "password"

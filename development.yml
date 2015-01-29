@@ -1,0 +1,7 @@
+---
+- hosts: stack
+  gather_facts: "yes"
+  roles:
+    - "nginx"
+    - "postgres"
+    
