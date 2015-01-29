@@ -16,11 +16,13 @@ vagrant up
 Config PG Commander
 
 
-![Config Settings](/src/img/Screen%Shot%2015-01-29%at%3.20.57%PM.png)
+![Config Settings](/src/img/Screen%20Shot%202015-01-29%20at%203.20.57%20PM.png)
 
 The password for postgres, is `postgres`
 
-The private key is in the install directories, `.vagrant/machines/default/virtualbox/private_key` folder
+Replace TEST with your directory name.
+
+The private key is in the install directories, `~/COA001DB/.vagrant/machines/default/virtualbox/private_key` folder
 
 Open up, an issue if have any problems.
 
