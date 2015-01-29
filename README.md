@@ -1,4 +1,4 @@
-#COA001
+## COA001
 
 Create a new directory called COA001DB, PLEASE DO NOT USE THIS FOLDER, as the Vagrantfile here is different from the one this special box uses.
 
@@ -20,7 +20,7 @@ Config PG Commander
 
 The password for postgres, is `postgres`
 
-Replace TEST with your directory name.
+Replace TEST with your directory name, like the line below this one.
 
 The private key is in the install directories, `~/COA001DB/.vagrant/machines/default/virtualbox/private_key` folder
 
@@ -30,7 +30,7 @@ Manual instructions for manual replication of the stack, after Ansible provision
 
 ```sh
 cd /var/www/
-sudo wget https://www.dropbox.com/s/yrmnhekuumpxn8l/data_entry_production.sql?dl=://www.dropbox.com/s/yrmnhekuumpxn8l/data_entry_production.sql
+sudo wget https://www.dropbox.com/s/yrmnhekuumpxn8l/data_entry_production.sql
 sudo -u postgres psql postgres
 \password postgres
 postgres
