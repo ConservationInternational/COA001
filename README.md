@@ -44,7 +44,7 @@ $ vagrant up
 # file from the COA001 git repository to the
 # ./vagrant/machines/default/virtualbox/ folder (this is created by Vagrant after
 # `vagrant up`)
-$ cp path/to/COA001/repository/private_key ./vagrant/machines/default/virtualbox/
+$ cp path/to/COA001/repository/devops/private_key ./vagrant/machines/default/virtualbox/
 
 # Now it should successfully authenticate
 ```
