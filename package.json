@@ -1,0 +1,44 @@
+{
+  "name": "COA001",
+  "version": "0.0.1",
+  "description": "COASST api",
+  "main": "index.js",
+  "dependencies": {
+    "bluebird": "~2.9.7",
+    "bookshelf": "~0.7.9",
+    "boom": "~2.6.1",
+    "chai-as-promised": "~4.1.1",
+    "chai": "~1.10.0",
+    "good-console": "~4.1.0",
+    "good": "~5.1.1",
+    "hapi": "~8.1.0",
+    "joi": "~5.1.0",
+    "knex": "~0.7.3",
+    "node-uuid": "~1.4.2",
+    "lodash": "~3.1.0"
+  },
+  "devDependencies": {
+    "mocha": "~2.1.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/RadishLab/COA001.git"
+  },
+  "keywords": [
+    "birds",
+    "beach",
+    "coast",
+    "uw",
+    "marine",
+    "debris"
+  ],
+  "author": "Radish Labs",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/RadishLab/COA001/issues"
+  },
+  "homepage": "https://github.com/RadishLab/COA001"
+}
