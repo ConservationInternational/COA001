@@ -51,7 +51,7 @@ $ cp path/to/COA001/repository/devops/private_key ./vagrant/machines/default/vir
 To config PG Commander
 
 
-![Config Settings](/src/img/Screen%20Shot%202015-01-29%20at%203.20.57%20PM.png)
+![Config Settings](/devops/pg-commander.png)
 
 The password for postgres, is `postgres`
 
