@@ -12,6 +12,12 @@ server.route({
   }
 });
 
+// Configure all routes
+var usersRoutes = require('./routes/users');
+usersRoutes.forEach(function(route) {
+  server.route(route);
+});
+
 server.register({
   register: Good,
   options: {

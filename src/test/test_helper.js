@@ -5,8 +5,17 @@ chai.use(chaiAsPromised);
 
 var Promise = require("bluebird");
 
+var server = require("../server/hapi");
+function request(options) {
+  return new Promise(function(resolve, reject) {
+    server.inject(options, resolve)
+  });
+}
+
 module.exports = {
   chai: chai,
   expect: expect,
-  Promise: Promise
+  Promise: Promise,
+  server: server,
+  request: request
 }
