@@ -15,7 +15,8 @@
     "joi": "~5.1.0",
     "knex": "~0.7.3",
     "node-uuid": "~1.4.2",
-    "lodash": "~3.1.0"
+    "lodash": "~3.1.0",
+    "pg": "~4.2.0"
   },
   "devDependencies": {
     "mocha": "~2.1.0"

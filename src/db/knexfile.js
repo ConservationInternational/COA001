@@ -8,7 +8,7 @@ module.exports = {
       port: "15432",
       database: 'coasst',
       user:     'coasst',
-      password: 'deadbirds'
+      password: 'deadbird'
     },
     pool: {
       min: 2,
@@ -26,7 +26,7 @@ module.exports = {
       port: "15432",
       database: 'coasst_test',
       user:     'coasst',
-      password: 'deadbirds'
+      password: 'deadbird'
     },
     pool: {
       min: 2,
