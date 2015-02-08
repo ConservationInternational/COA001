@@ -2,7 +2,7 @@ var expect = require('../test_helper').expect;
 var Promise = require("bluebird");
 var User = require('../../models/user');
 
-describe(User.constructor.name, function() {
+describe("User", function() {
   describe('#save', function() {
     it('should save', function() {
       var u = new User({
