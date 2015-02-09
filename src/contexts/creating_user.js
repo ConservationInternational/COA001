@@ -12,6 +12,8 @@ function CreatingUser(params) {
   params.salt = salt;
   delete params.password
 
+  params.email = params.email.toLowerCase();
+
   return User.forge(params)
       .save()
       .error(function(e) {

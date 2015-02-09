@@ -21,6 +21,17 @@ describe("CreatingUser", function() {
     ]);
   });
 
+  it("lower cases email addresses", function() {
+    var promise = CreatingUser({
+      firstName: "Frank",
+      lastName: "Reynolds",
+      email: "FRANK@PADDYSPUB.COM",
+      password: "trashcan"
+    });
+
+    return I.expect(promise).to.eventually.have.deep.property("attributes.email").that.eql("frank@paddyspub.com");
+  })
+
   context("email address already exists", function() {
     beforeEach(function() {
       return CreatingUser({
