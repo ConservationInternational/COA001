@@ -28,7 +28,7 @@ describe("CreatingUser", function() {
         lastName: "Reynolds",
         email: "owner@paddyspub.com",
         password: "onerockplease"
-      })
+      });
     });
 
     it("raises an error", function() {
