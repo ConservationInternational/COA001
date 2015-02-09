@@ -3,8 +3,8 @@ var Boom = require('boom');
 var Joi = require('joi');
 
 var create = {
-  method: 'POST',
-  path: '/users',
+  method: "POST",
+  path: "/users",
   handler: function(request, reply) {
     var params = {
       firstName: request.payload.first_name,
@@ -39,4 +39,4 @@ var create = {
 
 module.exports = [
   create
-]
+];

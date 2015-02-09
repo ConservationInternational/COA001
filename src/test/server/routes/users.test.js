@@ -1,6 +1,6 @@
 var I = require('../../test_helper');
 
-describe("Users Route", function() {
+describe("/users routes", function() {
   describe("POST /users", function() {
     it("does something", function() {
       var response = I.request({

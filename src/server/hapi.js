@@ -1,5 +1,6 @@
 var Hapi = require('hapi');
 var Good = require('good');
+var _ = require('lodash');
 
 var server = new Hapi.Server();
 server.connection({ port: 3000 });
@@ -13,8 +14,10 @@ server.route({
 });
 
 // Configure all routes
-var usersRoutes = require('./routes/users');
-usersRoutes.forEach(function(route) {
+routes = [];
+routes.push(require('./routes/users'));
+routes.push(require('./routes/auth'));
+_.flatten(routes).forEach(function(route) {
   server.route(route);
 });
 
