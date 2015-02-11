@@ -5,10 +5,10 @@ module.exports = {
     client: 'pg',
     connection: {
       host: "localhost",
-      port: "15432",
+      port: "5432",
       database: 'coasst',
-      user:     'coasst',
-      password: 'deadbird'
+      user:     'postgres',
+      password: 'postgres'
     },
     pool: {
       min: 2,
@@ -23,10 +23,10 @@ module.exports = {
     client: 'pg',
     connection: {
       host: "localhost",
-      port: "15432",
+      port: "5432",
       database: 'coasst_test',
-      user:     'coasst',
-      password: 'deadbird'
+      user:     'postgres',
+      password: 'postgres'
     },
     pool: {
       min: 2,

@@ -24,7 +24,11 @@
     "mocha": "~2.1.0"
   },
   "scripts": {
-    "test": "NODE_ENV=test mocha --reporter nyan --recursive src/test"
+    "test": "NODE_ENV=test mocha --reporter nyan --recursive src/test",
+    "db:drop": "node src/db/util.js drop",
+    "db:create": "node src/db/util.js create",
+    "db:migrate": "knex migrate:latest --knexfile src/db/knexfile.js",
+    "db:reset": "npm run db:drop && npm run db:create && npm run db:migrate"
   },
   "repository": {
     "type": "git",
