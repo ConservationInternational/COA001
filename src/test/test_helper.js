@@ -1,3 +1,5 @@
+var dbHelper = require('./database_helper');
+
 var chai = require('chai');
 var expect = chai.expect;
 var chaiAsPromised = require("chai-as-promised");

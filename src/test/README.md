@@ -1,12 +1,14 @@
 # Testing
 
-`nom test` runs all tests
+`npm test` runs all tests
 
 Tests are based on:
 - [Mocha][0] for the general testing library
 - [Chai][1] for expectations (with some plugins for dealing with things like Promises)
 
-TODO make tests work for single examples, and then document how to do so
+To run an individual test:
+
+`NODE_ENV=test mocha src/test/server/routes/users.test.js`
 
 ## Organization
 
