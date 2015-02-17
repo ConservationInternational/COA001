@@ -5,6 +5,8 @@ COASST Backend API
 
 After cloning run `npm install` to install necessary node modules
 
+`nom start` will start the server in development mode
+
 ## Testing 
 
 `npm test` runs all tests
