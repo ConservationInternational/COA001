@@ -28,7 +28,7 @@ exports.up = function(knex, Promise) {
     // comments
     table.text('comment');
     table.text('collected_comment');
-    table.text('entangled_comment');
+    table.text('entanglement_comment');
     table.text('oil_comment');
     table.text('tie_location_comment');
     table.text('verification_comment');
