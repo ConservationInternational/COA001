@@ -1,5 +1,5 @@
 var Boom = require('boom');
-var User = require('../../models/user');
+var User = require('../../models/init').User;
 var Authenticating = require('../../contexts/authenticating');
 
 var create = {

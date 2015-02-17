@@ -1,6 +1,6 @@
 var expect = require('../test_helper').expect;
 var Promise = require("bluebird");
-var User = require('../../models/user');
+var User = require('../../models/init').User;
 
 describe("User", function() {
   describe('#save', function() {

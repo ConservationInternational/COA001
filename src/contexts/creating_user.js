@@ -1,4 +1,4 @@
-var User = require('../models/user');
+var User = require('../models/init').User;
 var Authenticating = require('../contexts/authenticating');
 
 var emailUniqueConstraintViolation = "duplicate key value violates unique constraint \"users_email_unique\"";
