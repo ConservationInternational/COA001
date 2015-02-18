@@ -6,16 +6,27 @@ var create = {
   method: "POST",
   path: "/birds",
   handler: function(request, reply) {
+    var surveyToken = request.payload.survey_token;
+    delete request.payload.survey_token;
+
     Bird
         .forge(SnakeCamel.camelCaseObject(request.payload))
         .save()
         .then(function(bird) {
-          reply(SnakeCamel.snakeCaseObject(bird.attributes)).code(201);
-        });
+          var json = SnakeCamel.snakeCaseObject(bird.attributes);
+          delete json.id;
+          json.survey_token = surveyToken;
+
+          reply(json).code(201);
+        })
+        .error(function(e) {
+          reply().code(202);
+        })
   },
   config: {
     validate: {
       payload: {
+        survey_token: Joi.string().required(),
         found_location_type: Joi.string().valid(Bird.FOUND_LOCATION_TYPE).required(),
         foot_condition_type: Joi.string().valid(Bird.FOOT_CONDITION_TYPE).required(),
         eye_type: Joi.string().valid(Bird.EYE_TYPE).required(),

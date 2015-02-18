@@ -1,27 +1,24 @@
 var I = require('../../test_helper');
+var _ = require('lodash');
 
 describe("/birds routes", function() {
   describe("POST /birds", function() {
-    it("creates a new Bird", function() {
+    it("creates a new Bird and associates it with a survey", function() {
+      var surveyToken = "TODO: make a survey object and replace me"
+      var json = I.Factory.build('bird_json', { survey_token: surveyToken });
       var response = I.request({
         method: "POST",
         url: "/birds",
-        payload: {
-          found_location_type: "wrack",
-          foot_condition_type: "missing_feet",
-          eye_type: "head_missing",
-          entanglement_type: "net",
-          tie_location_type: "right_wing",
-          refound: false,
-          collected: true,
-          oil: true,
-          verification_method: "none"
-        }
+        payload: json
       });
 
       return I.Promise.all([
         I.expect(response).to.eventually.have.property('statusCode').that.eql(201),
-        I.expect(response).to.eventually.have.deep.property('result').that.eql("sheit")
+        I.expect(response).to.eventually.satisfy(function(response) {
+          delete response.result.token;
+          return _.isEqual(response.result, json);
+        }),
+        I.expect(response).to.eventually.have.deep.property('result.survey_token').that.eql(surveyToken)
       ]);
     });
   });

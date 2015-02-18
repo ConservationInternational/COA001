@@ -1,3 +1,6 @@
+require('./factories');
+var Factory = require('rosie').Factory;
+
 var dbHelper = require('./database_helper');
 
 var chai = require('chai');
@@ -19,5 +22,6 @@ module.exports = {
   expect: expect,
   Promise: Promise,
   server: server,
-  request: request
+  request: request,
+  Factory: Factory
 }
