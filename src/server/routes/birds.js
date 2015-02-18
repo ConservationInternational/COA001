@@ -1,27 +1,16 @@
 var Bird = require('../../models/init').Bird;
 var Joi = require('joi');
+var SnakeCamel = require('../../support/snake_camel');
 
 var create = {
   method: "POST",
   path: "/birds",
   handler: function(request, reply) {
-    var params = {
-      foundLocationType: request.payload.found_location_type,
-      footConditionType: request.payload.foot_condition_type,
-      eyeType: request.payload.eye_type,
-      entanglementType: request.payload.entanglement_type,
-      tieLocationType: request.payload.tie_location_type,
-      refound: request.payload.refound,
-      collected: request.payload.collected,
-      oil: request.payload.oil,
-      verificationMethod: request.payload.verification_method
-    };
-
     Bird
-        .forge(params)
+        .forge(SnakeCamel.camelCaseObject(request.payload))
         .save()
         .then(function(bird) {
-          reply(bird.attributes).code(201);
+          reply(SnakeCamel.snakeCaseObject(bird.attributes)).code(201);
         });
   },
   config: {
