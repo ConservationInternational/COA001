@@ -17,6 +17,7 @@ server.route({
 routes = [];
 routes.push(require('./routes/users'));
 routes.push(require('./routes/auth'));
+routes.push(require('./routes/birds'));
 _.flatten(routes).forEach(function(route) {
   server.route(route);
 });

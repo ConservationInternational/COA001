@@ -2,7 +2,7 @@ var I = require('../../test_helper');
 
 describe("/users routes", function() {
   describe("POST /users", function() {
-    it("does something", function() {
+    it("creates a new user", function() {
       var response = I.request({
         method: "POST",
         url: "/users",

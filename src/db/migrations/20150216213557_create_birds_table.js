@@ -14,9 +14,9 @@ exports.up = function(knex, Promise) {
 
     // colors
     var colors = ['none', 'white', 'red', 'orange', 'yellow', 'dark_green', 'blue', 'gray', 'brown', 'purple', 'black'];
-    table.enu('closest_tie_color', colors).notNullable();
-    table.enu('middle_tie_color', colors).notNullable();
-    table.enu('farthest_tie_color', colors).notNullable();
+    table.enu('closest_tie_color', colors);
+    table.enu('middle_tie_color', colors);
+    table.enu('farthest_tie_color', colors);
 
     // methods
     table.enu('verification_method', ['none', 'measurement_and_photograph', 'measurement', 'photograph']).notNullable();
