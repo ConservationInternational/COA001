@@ -19,7 +19,9 @@
     "pg": "~4.2.0",
     "sha1": "~1.1.0",
     "bcrypt": "~0.8.1",
-    "rosie": "~0.4.0"
+    "rosie": "~0.4.0",
+    "hapi-auth-jwt": "~2.1.0",
+    "jsonwebtoken": "~3.2.2"
   },
   "devDependencies": {
     "mocha": "~2.1.0"

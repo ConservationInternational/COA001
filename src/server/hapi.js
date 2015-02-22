@@ -1,5 +1,7 @@
 var Hapi = require('hapi');
 var Good = require('good');
+var HapiAuthJwt = require('hapi-auth-jwt');
+var Jwt = require('../support/jwt');
 var _ = require('lodash');
 
 var server = new Hapi.Server();
@@ -14,13 +16,35 @@ server.route({
 });
 
 // Configure all routes
-routes = [];
-routes.push(require('./routes/users'));
-routes.push(require('./routes/auth'));
-routes.push(require('./routes/birds'));
-_.flatten(routes).forEach(function(route) {
+publicRoutes = [];
+publicRoutes.push(require('./routes/users'));
+publicRoutes.push(require('./routes/auth'));
+_.flatten(publicRoutes).forEach(function(route) {
   server.route(route);
 });
+
+privateRoutes = [];
+privateRoutes.push(require('./routes/birds'));
+server.register({
+  register: HapiAuthJwt
+}, function(err) {
+  if (err) {
+    throw err;
+  }
+
+  server.auth.strategy('token', 'jwt', {
+    key: Jwt.privateKey,
+    validateFunc: Jwt.validateToken
+  });
+
+  _.flatten(privateRoutes).forEach(function(route) {
+    route.config = {
+      auth: 'token'
+    };
+    server.route(route);
+  });
+});
+
 
 server.register({
   register: Good,
