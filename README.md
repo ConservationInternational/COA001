@@ -17,7 +17,7 @@ vagrant up
 vagrant ssh
 cd /var/www/
 ```
-#### COASST Backend API
+#### COASST Back End API
 
 ### Setup
 
@@ -41,10 +41,17 @@ After cloning run `sudo npm install` to install necessary node modules
   - `server` - Server code.  We use [Hapi][3].  Dependent on the contexts.  Code for server configuration, route configuration, API validation, etc.
   - `test` - Test code.  Based on [Mocha][4] and [Chai][5].
 
-### Front End Path /
+### COASST Front End Path /
 ```nginx
   root /var/www/frontend/app;
 ```
+```sh
+#locally
+sudo mkdir frontend
+cd frontend
+git clone https://github.com/RadishLab/COA001-2.git app
+```
+
 ### API Path /api
 ```nginx
   location /api {

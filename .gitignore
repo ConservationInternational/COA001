@@ -9,6 +9,7 @@ host_vars
 
 # Other Repos
 *.staging.radishlab.com
+frontend
 
 # Logs
 logs
