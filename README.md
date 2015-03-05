@@ -7,9 +7,23 @@ Remove your original COA001 folder as well, start from nothing to go forward.
 ## DevOps COA001 box provisioning
 
 ### Start here
+
+MongoDB, Hapi, ReactJS, Node. NGINX, Ansible, Vagrant, Virtualbox
+
+This is a set of [Ansible](http://www.ansible.com) playbooks that launches a typical Node development environment.
+
+## Dependencies
+
+Ansible >= 1.8, On OS X, use [Homebrew](http://brew.sh) to install. Vagrant >= 1.7.2, Vagrant >= 4.3.24
+
+```sh
+brew install ansible
+```
+
 ```sh
 #Clone this repo
 git clone https://github.com/RadishLab/COA001.git
+cd COA001
 #THIS WILL TAKE 5-20 MINUTES. WE HAVE INSTALL AN OS, DOWNLOAD & IMPORT A DB, patience young jedi?
 vagrant up
 #You can update your host file now to 192.168.50.211 coa001.staging.radishlab.com while you are waiting
