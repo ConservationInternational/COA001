@@ -4,4 +4,6 @@
   roles:
     - "nginx"
     - "postgres"
+    - "node"
+    - "redis"
     

@@ -1,0 +1,67 @@
+---
+
+- name: "Nginx | install"
+  apt:
+    name="nginx"
+    state="present"
+    update_cache=yes
+  tags:
+    - "nginx"
+    - "packages"
+
+- name: "Nginx | nginx.conf"
+  template:
+    src="nginx.conf.j2"
+    dest="/etc/nginx/nginx.conf"
+  notify: "restart nginx"
+  tags: "nginx"
+
+- name: "Nginx | create site directories"
+  file:
+    path="/etc/nginx/{{ item }}"
+    owner="root"
+    group="root"
+    mode="0755"
+    state="directory"
+  with_items:
+    - "sites-available"
+    - "sites-enabled"
+    - "conf.d"
+    - "ssl"
+  notify: "restart nginx"
+  tags: "nginx"
+
+- name: "Nginx | remove default virtual host"
+  file:
+    path="/etc/nginx/sites-enabled/default"
+    state="absent"
+  notify: "restart nginx"
+  tags: "nginx"
+
+- name: "Node | nginx virtual hosts"
+  template:
+    src="node-nginx.j2"
+    dest="/etc/nginx/sites-available/{{project_url}}.conf"
+  tags:
+    - "Node"
+    - "nginx"
+
+- name: "Node | nginx virtual host symlinks"
+  file:
+    src="/etc/nginx/sites-available/{{ item }}"
+    dest="/etc/nginx/sites-enabled/{{ item }}"
+    state="link"
+    force="yes"
+  with_items:
+    - "{{project_url}}.conf"
+  notify: restart nginx
+  tags:
+    - "Node"
+    - "nginx"
+
+- name: "Nginx | create self-signed SSL cert"
+  command: openssl req -new -nodes -x509 -subj "/C=US/ST=New\ York/L=New\ York\ City/O=IT/CN=${ansible_fqdn}" -days 3650 -keyout /etc/nginx/ssl/server.key -out /etc/nginx/ssl/server.crt -extensions v3_ca creates=/etc/nginx/ssl/server.crt
+  notify: "restart nginx"
+  tags: "nginx"
+
+- include: "ufw.yml"

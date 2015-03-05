@@ -1,5 +1,5 @@
 var sha1 = require('sha1');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 function hash(password, salt) {
   var pepper = "aMRbgUVL0fTilT";

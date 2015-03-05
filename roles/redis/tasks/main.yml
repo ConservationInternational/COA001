@@ -1,0 +1,5 @@
+---
+
+- name: Redis | Install 
+  sudo: yes
+  apt: name=redis-server state=latest update_cache=yes

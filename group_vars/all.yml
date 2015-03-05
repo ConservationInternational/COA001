@@ -17,5 +17,6 @@ postgres_default_hosts:
   - "localhost"
 postgres_port: "5432"
 postgres_app_database: "{{ project_name }}"
-postgres_app_user: "username"
+postgres_app_user: "postgres"
 postgres_app_password: "password"
+postgres_app_version: "9.3"

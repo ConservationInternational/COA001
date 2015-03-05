@@ -1,0 +1,43 @@
+---
+
+- name: "Postgres | ensure apt cache is up to date"
+  apt: update_cache=yes
+
+- name: "Postgres | ensure packages are installed"
+  apt: name={{item}}
+  with_items:
+    - postgresql
+    - libpq-dev
+    - python-psycopg2
+  tags:
+    - "postgres"
+
+- name: "Postgres | add user"
+  sudo: yes
+  sudo_user: postgres
+  postgresql_user: name={{ postgres_app_user }} password={{ postgres_app_password }} role_attr_flags=SUPERUSER
+  tags:
+    - "postgres"
+
+- name: "Postgres | create database"
+  sudo: yes
+  sudo_user: postgres
+  postgresql_db: name={{ postgres_app_database }}
+  tags:
+    - "postgres"
+
+
+- name: "Postgres | download file"
+  get_url: url=https://www.dropbox.com/s/yrmnhekuumpxn8l/data_entry_production.sql?dl=1 dest=/var/www
+
+- name: "Postgres | import database"
+  sudo: yes
+  sudo_user: postgres
+  shell: cd /var/www/ && psql COA001 < data_entry_production.sql
+  with_items:
+      - postgresql
+      - libpq-dev
+      - python-psycopg2
+  tags:
+    - "postgres"
+
