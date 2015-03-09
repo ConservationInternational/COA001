@@ -19,6 +19,7 @@ server.route({
 publicRoutes = [];
 publicRoutes.push(require('./routes/users'));
 publicRoutes.push(require('./routes/auth'));
+publicRoutes.push(require('./routes/foot_type_families'));
 _.flatten(publicRoutes).forEach(function(route) {
   server.route(route);
 });

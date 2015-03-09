@@ -5,7 +5,10 @@ var Promise = require('bluebird');
 var knex = require('../db/bookshelf').knex;
 
 var tables = [
-  'users',
+    'users',
+    'birds',
+    'toe_types',
+    'foot_type_families'
 ];
 
 function truncate() {
