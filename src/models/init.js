@@ -21,5 +21,6 @@ var props = {
 var models = {};
 models.User = require('./user')(bookshelf, _.clone(props));
 models.Bird = require('./bird')(bookshelf, _.clone(props));
+models.ToeType = require('./toe_type')(bookshelf, _.clone(props));
 
 module.exports = models;
