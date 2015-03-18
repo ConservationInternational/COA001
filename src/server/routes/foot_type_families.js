@@ -1,4 +1,4 @@
-var FootTypeFamily = require('../../models/init').FootTypeFamily
+var FootTypeFamily = require('../../models/init').FootTypeFamily;
 var SnakeCamel = require('../../support/snake_camel');
 
 var read = {

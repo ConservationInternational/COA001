@@ -20,6 +20,7 @@ publicRoutes = [];
 publicRoutes.push(require('./routes/users'));
 publicRoutes.push(require('./routes/auth'));
 publicRoutes.push(require('./routes/foot_type_families'));
+publicRoutes.push(require('./routes/species'));
 _.flatten(publicRoutes).forEach(function(route) {
   server.route(route);
 });

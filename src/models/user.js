@@ -1,4 +1,4 @@
-module.exports = function(bookshelf, props) {
+module.exports = function(bookshelf, models, props) {
   props.tableName = "users";
   return bookshelf.Model.extend(props);
 };

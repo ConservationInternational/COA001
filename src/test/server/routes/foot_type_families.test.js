@@ -4,7 +4,7 @@ var FootTypeFamily = require('../../../models/init').FootTypeFamily;
 var SnakeCamel = require('../../../support/snake_camel');
 
 describe("/foot-type-families routes", function() {
-  describe ("GET /foot-type-families", function() {
+  describe("GET /foot-type-families", function() {
     beforeEach(function(done) {
       ToeType
           .forge(SnakeCamel.camelCaseObject(I.Factory.build('toe_type_json')))
@@ -16,8 +16,8 @@ describe("/foot-type-families routes", function() {
                 .then(function(foot) {
                   console.log("oh ya?");
                   done();
-                })
-          })
+                });
+          });
     });
 
     it("gets a list of all foot type families", function() {
@@ -29,7 +29,7 @@ describe("/foot-type-families routes", function() {
       return I.Promise.all([
         I.expect(response).to.eventually.have.property('statusCode').that.eql(200),
         I.expect(response).to.eventually.have.deep.property('result.foot_type_families').that.has.length(1)
-      ])
+      ]);
     });
   });
 });

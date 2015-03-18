@@ -19,9 +19,12 @@ var props = {
 };
 
 var models = {};
-models.User = require('./user')(bookshelf, _.clone(props));
-models.Bird = require('./bird')(bookshelf, _.clone(props));
-models.ToeType = require('./toe_type')(bookshelf, _.clone(props));
-models.FootTypeFamily = require('./foot_type_family')(bookshelf, _.clone(props));
+models.User = require('./user')(bookshelf, models, _.clone(props));
+models.Bird = require('./bird')(bookshelf, models, _.clone(props));
+models.Specie = require('./specie')(bookshelf, models, _.clone(props));
+models.Subgroup = require('./subgroup')(bookshelf, models, _.clone(props));
+models.Group = require('./group')(bookshelf, models, _.clone(props));
+models.FootTypeFamily = require('./foot_type_family')(bookshelf, models, _.clone(props));
+models.ToeType = require('./toe_type')(bookshelf, models, _.clone(props));
 
 module.exports = models;

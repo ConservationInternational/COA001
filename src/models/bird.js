@@ -59,7 +59,7 @@ VERIFICATION_METHOD = [
 ];
 
 
-module.exports = function(bookshelf, props) {
+module.exports = function(bookshelf, models, props) {
   props.tableName = "birds";
   var Bird = bookshelf.Model.extend(props);
 
