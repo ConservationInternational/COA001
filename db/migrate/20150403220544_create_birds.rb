@@ -12,22 +12,20 @@ class CreateBirds < ActiveRecord::Migration
       t.boolean :oil, null: false
       t.text :oil_comment
 
-      # TODO(yu) various types
-      # found_location_type
-      # foot_condition_type
-      # eye_type
+      t.integer :found_location_type, default: 0, null: false
+      t.integer :foot_condition_type, default: 0, null: false
+      t.integer :eye_type, default: 0, null: false
 
-      # TODO(yu) entanglement_type
+      t.integer :entanglement_type
       t.text :entanglement_comment
 
-      # TODO(yu) tie stuff
-      # tie_location_type
-      # closest_tie_color
-      # middle_tie_color
-      # farthest_tie_color
+      t.integer :tie_location_type
+      t.integer :closest_tie_color, default: 0
+      t.integer :middle_tie_color, default: 0
+      t.integer :farthest_tie_color, default: 0
       t.text :tie_location_comment
 
-      # TODO(yu) verification_method
+      t.integer :verification_method, default: 0, null: false
       t.text :verification_comment
 
       t.timestamps null: false
