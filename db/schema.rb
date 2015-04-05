@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404174813) do
+ActiveRecord::Schema.define(version: 20150405220839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.uuid     "token"
+    t.uuid     "token",          null: false
     t.integer  "state_id",       null: false
     t.string   "street_address"
     t.string   "city"
@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 20150404174813) do
     t.integer  "entanglement_type"
     t.text     "entanglement_comment"
     t.integer  "tie_location_type"
-    t.integer  "closest_tie_color",    default: 0
-    t.integer  "middle_tie_color",     default: 0
-    t.integer  "farthest_tie_color",   default: 0
+    t.integer  "closest_tie_color"
+    t.integer  "middle_tie_color"
+    t.integer  "farthest_tie_color"
     t.text     "tie_location_comment"
     t.integer  "verification_method",  default: 0, null: false
     t.text     "verification_comment"
@@ -102,6 +102,18 @@ ActiveRecord::Schema.define(version: 20150404174813) do
     t.uuid     "token",      null: false
     t.integer  "group_id",   null: false
     t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "surveys", force: :cascade do |t|
+    t.uuid     "token",      null: false
+    t.integer  "beach_id"
+    t.integer  "weather"
+    t.text     "comments"
+    t.boolean  "verified"
+    t.datetime "started_at"
+    t.datetime "ended_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

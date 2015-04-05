@@ -20,9 +20,9 @@ class CreateBirds < ActiveRecord::Migration
       t.text :entanglement_comment
 
       t.integer :tie_location_type
-      t.integer :closest_tie_color, default: 0
-      t.integer :middle_tie_color, default: 0
-      t.integer :farthest_tie_color, default: 0
+      t.integer :closest_tie_color
+      t.integer :middle_tie_color
+      t.integer :farthest_tie_color
       t.text :tie_location_comment
 
       t.integer :verification_method, default: 0, null: false

@@ -5,7 +5,7 @@ RSpec.describe Authenticating, type: :context do
   let(:salt) { "371024000.661984040026753" }
   let(:hashed_password) { "2b7ee684c4a65c870ce95d678a6794e200f6079e" }
 
-  describe "#authenticate" do
+  describe ".execute!" do
     context "when correct" do
       let(:password) { "sucker" }
 
