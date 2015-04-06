@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root "home#index"
 
-  resources :surveys, only: :new
+  get "/surveys/new" => "surveys#what"
+  get "/surveys/:token/edit/who" => "surveys#who", as: :survey_edit_who
+  get "/surveys/:token/edit/when" => "surveys#when"
+  get "/surveys/:token/edit/where" => "surveys#where"
+  get "/surveys/:token/edit/hub" => "surveys#hub"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
