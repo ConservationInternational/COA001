@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root "home#index"
 
-  get "/surveys/new" => "surveys#what"
-  get "/surveys/:token/edit/who" => "surveys#who", as: :survey_edit_who
-  get "/surveys/:token/edit/when" => "surveys#when"
-  get "/surveys/:token/edit/where" => "surveys#where"
+  get "/surveys/new" => "surveys#what", as: :new_survey
+  post "/surveys" => "surveys#create", as: :surveys
+  get "/surveys/:token/edit/who" => "surveys#who", as: :edit_survey_who
+  get "/surveys/:token/edit/when" => "surveys#when", as: :edit_survey_when
+  put "/surveys/:token/edit/when" => "surveys#submit_when"
+  get "/surveys/:token/edit/where" => "surveys#where", as: :edit_survey_where
   get "/surveys/:token/edit/hub" => "surveys#hub"
 
   # Example of regular route:

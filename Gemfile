@@ -22,6 +22,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc # bundle exec rake doc:rails generates the A
 
 # App specific
 gem 'pg'
+gem 'bootstrap_form'
 
 group :development, :test do
   # Defaults from Rails

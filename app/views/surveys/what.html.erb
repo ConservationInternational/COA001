@@ -1,12 +1,10 @@
 <h1>What did you find?</h1>
 
-<p>
-  Survey Types Collected
-  <br>
-  <br><checkbox>Beached Bird</checkbox>
-  <br><checkbox>Small Marine Debris</checkbox>
-  <br><checkbox>Medium Marine Debris</checkbox>
-  <br><checkbox>Large Marine Debris</checkbox>
-
-  <%= link_to "Continue to Step 2", survey_edit_who_path(token: @survey.token), method: :get %>
-</p>
+<p>Survey Types Collected</p>
+<%= bootstrap_form_for @what_step, url: surveys_path do |f| %>
+  <%= f.check_box :beached_bird, label: "Beached Bird" %>
+  <%= f.check_box :small_marine_debris, label: "Small Marine Debris" %>
+  <%= f.check_box :medium_marine_debris, label: "Medium Marine Debris" %>
+  <%= f.check_box :large_marine_debris, label: "Large Marine Debris" %>
+  <%= f.submit %>
+<% end %>

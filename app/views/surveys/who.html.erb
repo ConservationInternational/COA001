@@ -1,0 +1,18 @@
+<h1>Data Collectors</h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <h2>Friends</h2>
+    <button class="button">Add Friend</button>
+  </div>
+  <div class="col-md-4">
+    <h2>Data Collectors</h2>
+    <button class="button">Add Collector</button>
+  </div>
+  <div class="col-md-4">
+    <h2>Add Volunteer</h2>
+    <button class="button">Add Volunteer</button>
+  </div>
+</div>
+
+<%= link_to "Continue to Step 3", edit_survey_when_path(token: @survey.token), method: :get %>
