@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406000432) do
+ActiveRecord::Schema.define(version: 20150412192119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,15 @@ ActiveRecord::Schema.define(version: 20150406000432) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "survey_participations", force: :cascade do |t|
+    t.integer  "survey_id"
+    t.integer  "user_id"
+    t.integer  "travel_time"
+    t.integer  "role"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "surveys", force: :cascade do |t|
     t.uuid     "token",      null: false
     t.integer  "beach_id"
@@ -136,6 +145,14 @@ ActiveRecord::Schema.define(version: 20150406000432) do
     t.string   "code",       null: false
     t.string   "name",       null: false
     t.boolean  "active",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_friendships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.integer  "frequency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

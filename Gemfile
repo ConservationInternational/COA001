@@ -33,5 +33,7 @@ group :development, :test do
   # App specific
   gem 'rspec-rails', '~> 3.0'
   gem 'fuubar' # RSpec formatting
+  gem 'factory_girl' # Test factories
+  gem 'faker' # Faking test data
 end
 
