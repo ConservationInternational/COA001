@@ -127,5 +127,46 @@ RSpec.describe SurveysController, type: :controller do
     end
   end
 
-  describe "GET /surveys/:token/edit/where"
+  describe "GET /surveys/:token/edit/where" do
+    subject { get :where, token: survey.token }
+    let(:survey) { Survey.create! }
+
+    it "responds with 200" do
+      subject
+      expect(response).to be_success
+      expect(response).to have_http_status 200
+    end
+
+    it "renders the what template" do
+      subject
+      expect(response).to render_template :where
+    end
+
+    it "assigns a WhatStep" do
+      subject
+      expect(assigns(:where_step)).to be_kind_of SurveysController::WhereStep
+    end
+  end
+
+  describe "PUT /surveys/:token/edit/where" do
+    subject { put :submit_where, token: survey.token, where: params }
+    let(:survey) { Survey.create! }
+    let(:params) { {} }
+
+    it "assigns a where model with parameters from the request"
+
+    # it "updates the Survey" do
+    #   subject
+    #   survey.reload
+    #
+    #   expect(survey.state_id).to eql 1
+    #   expect(survey.beach_id).to eql 2
+    # end
+
+    it "redirects to edit survey where path" do
+      subject
+      expect(response).to redirect_to edit_survey_hub_path(token: survey.token)
+      expect(response).to have_http_status 302
+    end
+  end
 end

@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+State.create(code: 'FL', name: 'Florida')
+State.create(code: 'WA', name: 'Washington')

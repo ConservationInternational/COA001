@@ -3,7 +3,6 @@
 <div class="row">
   <div class="col-md-4 col-md-offset-2">
     <%= bootstrap_form_for @when_step,
-                        html: { class: "form-horizontal" },
                         url: edit_survey_when_path(token: @survey.token),
                         method: :put do |f| %>
       <div class="form-group form-inline">

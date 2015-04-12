@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-2">
+    <%= bootstrap_form_for @where_step,
+                           url: edit_survey_where_path(token: @survey.token),
+                           method: :put do |f| %>
+      <div class="form-group form-inline">
+        <%= f.collection_select :state, State.all, :token, :name %>
+      </div>
+
+      <div class="form-group form-inline">
+        <%= f.text_field :beach %>
+      </div>
+
+      <h3>Travel Time</h3>
+
+      <h2>Volunteer   Time {TODO(yu)}</h2>
+
+      <%= f.form_group :weather, label: { text: "Weather" } do %>
+        <br>
+        <% Survey.weathers.each do |name, value| %>
+          <%= f.radio_button :weather, value, label: name.capitalize, inline: true %>
+        <% end %>
+      <% end %>
+
+      <%= f.form_group :surf, label: { text: "Surf Present?"} do %>
+        <br>
+        <%= f.radio_button :surf, "true", label: "Yes", inline: true %>
+        <%= f.radio_button :surf, "false", label: "No", inline: true %>
+      <% end %>
+
+      <%= f.form_group :oil, label: { text: "Oil Present?"} do %>
+        <br>
+        <%= f.radio_button :oil, "true", label: "Yes", inline: true %>
+        <%= f.radio_button :oil, "false", label: "No", inline: true %>
+      <% end %>
+
+      <%= f.text_area :comment, label: "Any comments on the state of the beach?" %>
+
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>

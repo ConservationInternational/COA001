@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get "/surveys/:token/edit/when" => "surveys#when", as: :edit_survey_when
   put "/surveys/:token/edit/when" => "surveys#submit_when"
   get "/surveys/:token/edit/where" => "surveys#where", as: :edit_survey_where
-  get "/surveys/:token/edit/hub" => "surveys#hub"
+  put "/surveys/:token/edit/where" => "surveys#submit_where"
+  get "/surveys/:token/edit/hub" => "surveys#hub", as: :edit_survey_hub
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
