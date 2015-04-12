@@ -1,0 +1,18 @@
+<% steps = [
+    :what,
+    :who,
+    :when,
+    :where,
+    :hub,
+    :review
+] %>
+
+<ol class="breadcrumb">
+  <% steps.first(steps.index(step) + 1).each do |name| %>
+    <% if name != step %>
+      <li><a href="#"><%= name.to_s.capitalize %></a></li>
+    <% else %>
+      <li class="active"><%= name.to_s.capitalize %></li>
+    <% end %>
+  <% end %>
+</ol>

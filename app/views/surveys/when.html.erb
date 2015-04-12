@@ -1,5 +1,4 @@
-<%= debug params %>
-<%= debug @when_step %>
+<%= render partial: "breadcrumb", locals: { step: :when } %>
 <div class="row">
   <div class="col-md-4 col-md-offset-2">
     <%= bootstrap_form_for @when_step,
