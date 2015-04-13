@@ -20,19 +20,31 @@ RSpec.describe SurveysController, type: :controller do
   end
 
   describe "POST /surveys" do
+    subject { post :create }
+    let!(:current_user) { FactoryGirl.create(:mac) }
+
     it "redirects to edit survey who path" do
-      post :create
+      subject
       expect(response).to redirect_to edit_survey_who_path(Survey.last.token)
       expect(response).to have_http_status 302
     end
 
     it "creates a Survey" do
-      expect{ post :create }.to change{ Survey.count }.by 1
+      expect{ subject }.to change{ Survey.count }.by 1
+    end
+
+    it "adds the current user as a participant" do
+      expect{ subject }.to change{ Survey::Participation.count }.by 1
+      p = Survey::Participation.first
+      expect(p.survey_id).to eql Survey.last.id
+      expect(p.user_id).to eql current_user.id
+      expect(p.role).to eql "submitter"
     end
   end
 
   describe "GET /surveys/:token/edit/who" do
     let(:survey) { Survey.create! }
+    let!(:current_user) { FactoryGirl.create(:mac) }
 
     it "responds with 200" do
       get :who, token: survey.token
@@ -43,6 +55,33 @@ RSpec.describe SurveysController, type: :controller do
     it "renders the who template" do
       get :who, token: survey.token
       expect(response).to render_template :who
+    end
+
+    it "assigns" do
+      get :who, token: survey.token
+      expect(assigns(:data_collectors)).to be_kind_of Array
+      expect(assigns(:friends)).to be_kind_of Array
+    end
+  end
+
+  describe "PUT /surveys:token/participations" do
+    subject { put :add_friend, token: survey.token, friend: { token: friend.token } }
+    let(:survey) { Survey.create! }
+    let(:friend) { FactoryGirl.create(:dee) }
+    let!(:current_user) { FactoryGirl.create(:mac) }
+
+    it "creates a participation" do
+      expect{ subject }.to change{ Survey::Participation.count }.by 1
+      p = Survey::Participation.first
+      expect(p.user_id).to eql friend.id
+      expect(p.survey_id).to eql survey.id
+      expect(p.role).to eql "data_collector"
+    end
+
+    it "redirects to edit survey who path" do
+      subject
+      expect(response).to redirect_to edit_survey_who_path(survey.token)
+      expect(response).to have_http_status 302
     end
   end
 

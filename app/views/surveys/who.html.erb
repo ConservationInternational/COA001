@@ -8,7 +8,20 @@
   </div>
   <div class="col-md-4">
     <h2>Data Collectors</h2>
-    <button class="button">Add Collector</button>
+
+    <% @data_collectors.each do |user| %>
+      <%= user.full_name %>
+      <br>
+    <% end %>
+
+    <% if !@friends.empty? %>
+      <%= bootstrap_form_for :friend, url: edit_survey_add_participation_path(@survey.token), method: :put do |f| %>
+        <div class="form-group form-inline">
+          <%= f.collection_select :token, @friends, :token, :full_name, label: "Friends" %>
+          <%= f.submit %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
   <div class="col-md-4">
     <h2>Add Volunteer</h2>

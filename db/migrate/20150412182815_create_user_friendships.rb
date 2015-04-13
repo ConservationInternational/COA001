@@ -7,5 +7,7 @@ class CreateUserFriendships < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :user_friendships, [:user_id, :friend_id], unique: true
   end
 end

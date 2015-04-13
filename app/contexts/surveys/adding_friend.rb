@@ -5,7 +5,13 @@ class Surveys::AddingFriend
       p.survey_id = survey.id
       p.user_id = friend.id
       p.role = :data_collector
-      p.save!
+
+      begin
+        p.save!
+      rescue ActiveRecord::RecordNotUnique
+        p = Survey::Participation.where(survey_id: survey.id, user_id: friend.id).first!
+      end
+
       p
     end
   end

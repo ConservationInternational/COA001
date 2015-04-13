@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "/surveys/new" => "surveys#what", as: :new_survey
   post "/surveys" => "surveys#create", as: :surveys
   get "/surveys/:token/edit/who" => "surveys#who", as: :edit_survey_who
+  put "/surveys/:token/participations" => "surveys#add_friend", as: :edit_survey_add_participation
+  delete "/surveys/:token/participations/:participation_token" => "surveys#remove_friend", as: :edit_survey_remove_participation
   get "/surveys/:token/edit/when" => "surveys#when", as: :edit_survey_when
   put "/surveys/:token/edit/when" => "surveys#submit_when"
   get "/surveys/:token/edit/where" => "surveys#where", as: :edit_survey_where

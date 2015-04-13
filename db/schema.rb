@@ -128,6 +128,8 @@ ActiveRecord::Schema.define(version: 20150412192119) do
     t.datetime "updated_at",  null: false
   end
 
+  add_index "survey_participations", ["survey_id", "user_id"], name: "index_survey_participations_on_survey_id_and_user_id", unique: true, using: :btree
+
   create_table "surveys", force: :cascade do |t|
     t.uuid     "token",      null: false
     t.integer  "beach_id"
@@ -156,6 +158,8 @@ ActiveRecord::Schema.define(version: 20150412192119) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "user_friendships", ["user_id", "friend_id"], name: "index_user_friendships_on_user_id_and_friend_id", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.uuid     "token",           null: false

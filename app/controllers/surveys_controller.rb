@@ -11,20 +11,43 @@ class SurveysController < ApplicationController
     attr_accessor :state, :beach, :weather, :surf, :oil, :comment
   end
 
+  class WhoStep
+    include ActiveModel::Model
+  end
+
   # Step 1
   def what
     @what_step = WhatStep.new
   end
 
   def create
-    @survey = Survey.create!
-
+    @survey = Surveys::Creating.execute!(current_user)
     redirect_to edit_survey_who_path(token: @survey.token)
   end
 
   # Step 2
   def who
     @survey = Survey.where(token: params[:token]).first!
+    @data_collectors = @survey.participants.sort_by { |f| f.full_name }
+    @friends = (current_user.friends - @data_collectors).sort_by { |f| f.full_name }
+  end
+
+  def add_friend
+    @survey = Survey.where(token: params[:token]).first!
+    @friend = User.where(token: params[:friend][:token]).first!
+
+    Surveys::AddingFriend.execute!(@friend, @survey)
+
+    redirect_to edit_survey_who_path(token: @survey.token)
+  end
+
+  def remove_friend
+
+  end
+
+  # TODO(yu): remove this stub
+  def current_user
+    User.where(email: "mac@paddyspub.com").first
   end
 
   # Step 3
