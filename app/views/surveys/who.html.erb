@@ -10,12 +10,18 @@
     <h2>Data Collectors</h2>
 
     <% @data_collectors.each do |user| %>
-      <%= user.full_name %>
+      <%= bootstrap_form_for :friend,
+                             layout: :inline,
+                             url: edit_survey_remove_friend_path(@survey.token, user.token),
+                             method: :delete do |f| %>
+        <%= user.full_name %>
+        <%= f.submit "Remove"  %>
+      <% end %>
       <br>
     <% end %>
 
     <% if !@friends.empty? %>
-      <%= bootstrap_form_for :friend, url: edit_survey_add_participation_path(@survey.token), method: :put do |f| %>
+      <%= bootstrap_form_for :friend, url: edit_survey_add_friend_path(@survey.token), method: :put do |f| %>
         <div class="form-group form-inline">
           <%= f.collection_select :token, @friends, :token, :full_name, label: "Friends" %>
           <%= f.submit %>

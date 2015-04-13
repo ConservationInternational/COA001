@@ -64,7 +64,7 @@ RSpec.describe SurveysController, type: :controller do
     end
   end
 
-  describe "PUT /surveys:token/participations" do
+  describe "PUT /surveys/:token/friends" do
     subject { put :add_friend, token: survey.token, friend: { token: friend.token } }
     let(:survey) { Survey.create! }
     let(:friend) { FactoryGirl.create(:dee) }
@@ -85,8 +85,31 @@ RSpec.describe SurveysController, type: :controller do
     end
   end
 
-  describe "GET /surveys/:token/edit/when" do
+  describe "DELETE /surveys/:token/friend/:friend_token" do
+    subject { delete :remove_friend, token: survey.token, friend_token: friend.token }
     let(:survey) { Survey.create! }
+    let(:friend) { FactoryGirl.create(:dee) }
+    let!(:current_user) { FactoryGirl.create(:mac) }
+    before do
+      Surveys::AddingFriend.execute!(friend, survey)
+    end
+
+    it "destroys the participation" do
+      subject
+      expect(Survey::Participation.where(survey_id: survey.id, user_id: friend.id).first).to eql nil
+    end
+
+    it "redirects to the edit survey who path" do
+      subject
+      expect(response).to redirect_to edit_survey_who_path(survey.token)
+      expect(response).to have_http_status 302
+    end
+  end
+
+  describe "GET /surveys/:token/edit/when" do
+    let(:survey) { Survey.create!(started_at: started_at, ended_at: ended_at) }
+    let(:started_at) { 3.days.ago }
+    let(:ended_at) { 1.days.ago }
 
     it "responds with 200" do
       get :when, token: survey.token
@@ -102,7 +125,9 @@ RSpec.describe SurveysController, type: :controller do
     it "assigns a when model" do
       get :when, token: survey.token
       expect(assigns(:when_step)).to be_kind_of Surveys::AddingTimes::Model
-      # TODO(yu): assign properties from Survey
+      expect(assigns(:when_step).date).to eql started_at
+      expect(assigns(:when_step).start_time).to eql started_at
+      expect(assigns(:when_step).end_time).to eql ended_at
     end
   end
 

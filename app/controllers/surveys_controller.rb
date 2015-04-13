@@ -28,8 +28,8 @@ class SurveysController < ApplicationController
   # Step 2
   def who
     @survey = Survey.where(token: params[:token]).first!
-    @data_collectors = @survey.participants.sort_by { |f| f.full_name }
-    @friends = (current_user.friends - @data_collectors).sort_by { |f| f.full_name }
+    @data_collectors = @survey.participations.sort_by{ |p| p.id }.map{ |p| p.user }
+    @friends = ([current_user.friends, current_user].flatten - @data_collectors).sort_by { |f| f.full_name }
   end
 
   def add_friend
@@ -42,18 +42,21 @@ class SurveysController < ApplicationController
   end
 
   def remove_friend
+    @survey = Survey.where(token: params[:token]).first!
+    @friend = User.where(token: params[:friend_token]).first!
 
-  end
+    Surveys::RemovingFriend.execute!(@friend, @survey)
 
-  # TODO(yu): remove this stub
-  def current_user
-    User.where(email: "mac@paddyspub.com").first
+    redirect_to edit_survey_who_path(token: @survey.token)
   end
 
   # Step 3
   def when
     @survey = Survey.where(token: params[:token]).first!
     @when_step = Surveys::AddingTimes::Model.new
+    @when_step.date = @survey.started_at
+    @when_step.start_time = @survey.started_at
+    @when_step.end_time = @survey.ended_at
   end
 
   def submit_when
@@ -79,5 +82,12 @@ class SurveysController < ApplicationController
   # Step 5
   def hub
     @survey = Survey.where(token: params[:token]).first!
+  end
+
+  private
+
+  # TODO(yu): remove this stub
+  def current_user
+    User.where(email: "mac@paddyspub.com").first
   end
 end
