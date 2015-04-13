@@ -1,18 +1,20 @@
 <% steps = [
-    :what,
-    :who,
-    :when,
-    :where,
-    :hub,
-    :review
+    [:what, nil],
+    [:who, edit_survey_who_path(survey.token)],
+    [:when, edit_survey_when_path(survey.token)],
+    [:where, edit_survey_where_path(survey.token)],
+    [:hub, edit_survey_hub_path(survey.token)],
+    [:review, nil]
 ] %>
 
 <ol class="breadcrumb">
-  <% steps.first(steps.index(step) + 1).each do |name| %>
-    <% if name != step %>
-      <li><a href="#"><%= name.to_s.capitalize %></a></li>
+  <% steps.first(steps.index(steps.find { |s| s.first == step }) + 1).each do |array| %>
+    <% if array.first != step %>
+      <li>
+        <%= link_to array.first.to_s.capitalize, array.last %>
+      </li>
     <% else %>
-      <li class="active"><%= name.to_s.capitalize %></li>
+      <li class="active"><%= array.first.to_s.capitalize %></li>
     <% end %>
   <% end %>
 </ol>
