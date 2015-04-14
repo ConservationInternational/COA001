@@ -69,6 +69,9 @@ vagrant ssh
 # psql into the database
 sudo -iu postgres psql
 
+# list all databases
+\l
+
 # connect to the legacy database
 \connect COA001
 
