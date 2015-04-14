@@ -7,7 +7,7 @@ COASST dynamic website
 
 2. Make sure you have the required version of ruby
 
-`cat .ruby-version` will show the proper version of ruby to use
+`cat Gemfile | grep ruby` will show the proper version of ruby to use
 
 I suggest using [rvm][6] to manage different versions of ruby
 
