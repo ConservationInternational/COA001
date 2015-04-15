@@ -48,6 +48,10 @@ RSpec.describe Surveys::AddingTimes do
     let(:model) { Surveys::AddingTimes::Model.new(params) }
     let(:params) { { date: date, start_time: start_time, end_time: end_time } }
 
+    before do
+      expect(survey).to receive(:save!).and_return survey
+    end
+
     it "adds the times" do
       subject
       expect(survey.started_at).to eql DateTime.new.change(year: 2015, month: 4, day: 10, hour: 8, min: 34)

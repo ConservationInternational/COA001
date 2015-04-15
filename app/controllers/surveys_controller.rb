@@ -62,7 +62,7 @@ class SurveysController < ApplicationController
   def submit_when
     @survey = Survey.where(token: params[:token]).first!
     @when_step = Surveys::AddingTimes::Model.new(params[:when], true)
-    Surveys::AddingTimes.execute!(@survey, @when_step).save!
+    Surveys::AddingTimes.execute!(@survey, @when_step)
 
     redirect_to edit_survey_where_path(token: @survey.token)
   end

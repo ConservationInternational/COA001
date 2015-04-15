@@ -12,7 +12,7 @@ RSpec.describe Surveys::RemovingFriend do
     end
 
     it "removes the friend from the survey" do
-      expect_any_instance_of(Survey::Participation).to receive(:destroy)
+      expect_any_instance_of(Survey::Participation).to receive(:destroy!)
       subject
     end
   end

@@ -2,7 +2,7 @@ class Surveys::RemovingFriend
   class << self
     def execute!(friend, survey)
       p = participation(friend, survey)
-      p.destroy
+      p.destroy!
     end
 
     private

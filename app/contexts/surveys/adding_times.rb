@@ -59,7 +59,7 @@ class Surveys::AddingTimes
     def execute!(survey, model)
       survey.started_at = model.started_at
       survey.ended_at = model.ended_at
-      survey
+      survey.save!
     end
   end
 end
