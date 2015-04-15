@@ -55,6 +55,8 @@ Typically Rails apps will grow to either have fat models or fat controllers.  Ou
 
 The naming convention for contexts is to be a gerund.  For example `CreatingUser`, `Authenticating`, `DebitingBankAccount`.  Each context has a class method `.execute!` that is the entry point for calling into a context.  For example: `DebitingBankAccount.execute!(source, destination, 10.0)`.
 
+The `execute!` method is purposely a class level method to enforce statelessness.  State is the root of all evil, and having a class level method makes it really difficult for us to store state on our contexts.
+
 ## Devops
 
 ```
